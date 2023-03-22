@@ -1,9 +1,19 @@
 provider "aws" {
   # Configuration options
   region = "eu-west-1"
-  access_key = "AKIARE3GANCGA4SARDN4"
-  secret_key = "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"
+  profile = "dev"
+  access_key = "${var.aws_access_key}"
+  secret_key = "${var.aws_secret_key}"
+  token = "${var.aws_session_token}"
+  #shared_credentials_files = ["C:\\Users\\vishal.shah\\.aws\\credentials"]
 }
+output "access_key" {
+  value = "${var.aws_access_key}"
+}
+output "secret_key" {
+  value = "${var.aws_secret_key}"
+}
+
 resource "aws_s3_bucket" "s3_bucket" {
     bucket = "tf-s3-airflow-dags"
 }
